@@ -1,7 +1,10 @@
+import { db } from "@/prisma/db";
 import Link from "next/link";
-import { posts } from "./data"; 
 
-export default function Home() {
+export default async function Home() {
+
+  const posts = await db.post.findMany();
+
   return (
     <main className="min-h-screen bg-gray-50 p-4">
       <div className="space-y-6">
