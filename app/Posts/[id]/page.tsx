@@ -1,4 +1,3 @@
-import { posts } from "@/app/data";
 import { db } from "@/prisma/db";
 import { Metadata } from "next";
 
@@ -7,7 +6,8 @@ interface Props{
 }
 
 // Denna funktion genererar statiska html sidor 
-export function generateStaticParams(){
+export async function generateStaticParams(){
+  const posts = await db.post.findMany()
     return posts.map((post) => ({
         id: post.id
     }))
