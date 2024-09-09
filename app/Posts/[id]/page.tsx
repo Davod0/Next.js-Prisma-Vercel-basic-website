@@ -1,4 +1,4 @@
-import { posts } from "@/app/data";
+import { db } from "@/prisma/db";
 import { Metadata } from "next";
 
 interface Props{
@@ -6,7 +6,8 @@ interface Props{
 }
 
 // Denna funktion genererar statiska html sidor 
-export function generateStaticParams(){
+export async function generateStaticParams(){
+  const posts = await db.post.findMany()
     return posts.map((post) => ({
         id: post.id
     }))
@@ -19,8 +20,9 @@ export const metadata: Metadata = {
 };
 
 // Denna funktion genererar en page för varje post
-export default function PostPage({params}: Props) {
-  const post = posts.find((post) => post.id === params.id);
+export default async function PostPage({params}: Props) {
+    
+    const post = await db.post.findUnique({where: {id: params.id}})
 
   if (!post) return null;
 
@@ -37,3 +39,7 @@ export default function PostPage({params}: Props) {
     </main>
   );
 }
+
+
+
+// davod0000
