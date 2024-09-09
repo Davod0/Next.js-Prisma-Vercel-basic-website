@@ -18,21 +18,22 @@ export const metadata: Metadata = {
   description: "Read about best posts",
 };
 
+// Denna funktion genererar en page för varje post
+export default function PostPage({params}: Props) {
+  const post = posts.find((post) => post.id === params.id);
 
+  if (!post) return null;
 
-export default function PostPage({params}: Props){
-
-    const post = posts.find((post) => post.id === params.id);
-
-    if (!post) return null;
-
-    return(
-        <main>
-            <h1>{post.title}</h1>
-            <p>{post.body}</p>
-            <span>{post.author}</span>
-            <span>{post.createdAt.toString()}</span>
-        </main>
-    );
-
+  return (
+    <main className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-2xl mx-auto bg-white p-6 rounded-md shadow-sm">
+        <h1 className="text-3xl font-bold mb-4 text-gray-900">{post.title}</h1>
+        <p className="text-gray-700 mb-6">{post.body}</p>
+        <div className="flex justify-between items-center text-gray-500">
+          <span className="font-medium">Author: {post.author}</span>
+          <span className="text-sm">{new Date(post.createdAt).toLocaleDateString()}</span>
+        </div>
+      </div>
+    </main>
+  );
 }
