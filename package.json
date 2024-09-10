@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "postinstall": "prisma db push",
-    "dev": "next dev --turbo",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.19.1",
     "next": "14.2.8",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
+    "zod": "^3.23.8"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

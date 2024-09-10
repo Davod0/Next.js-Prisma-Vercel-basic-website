@@ -7,7 +7,7 @@ interface Props{
 
 // Denna funktion genererar statiska html sidor 
 export async function generateStaticParams(){
-  const posts = await db.post.findMany()
+  const posts = await db.post.findMany();
     return posts.map((post) => ({
         id: post.id
     }))
@@ -42,4 +42,3 @@ export default async function PostPage({params}: Props) {
 
 
 
-// davod0000
